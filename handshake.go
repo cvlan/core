@@ -1,9 +1,9 @@
 package CVLAN
 
 import (
-	"CVLAN/crypto"
-	"CVLAN/util"
 	"errors"
+	"github.com/cvlan/core/crypto"
+	"github.com/cvlan/core/util"
 )
 
 type HandShake interface {

@@ -1,8 +1,8 @@
 package CVLAN
 
 import (
-	"CVLAN/internal/sync"
 	"bytes"
+	"github.com/cvlan/core/internal/sync"
 )
 
 var (

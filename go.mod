@@ -1,4 +1,4 @@
-module CVLAN
+module github.com/cvlan/core
 
 go 1.20
 

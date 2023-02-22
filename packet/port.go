@@ -1,7 +1,7 @@
 package packet
 
 import (
-	"CVLAN/util"
+	"github.com/cvlan/core/util"
 	"io"
 	"strconv"
 )

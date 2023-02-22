@@ -1,8 +1,8 @@
 package packet_test
 
 import (
-	"CVLAN/packet"
 	"bytes"
+	"github.com/cvlan/core/packet"
 	"io"
 	"testing"
 )

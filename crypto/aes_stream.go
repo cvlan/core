@@ -1,8 +1,8 @@
 package crypto
 
 import (
-	"CVLAN/util"
 	"errors"
+	"github.com/cvlan/core/util"
 	"io"
 )
 
