@@ -8,6 +8,8 @@ import (
 
 type Port uint16
 
+const NoPort Port = 0
+
 func (p *Port) String() string {
 	return strconv.FormatInt(int64(*p), 10)
 }

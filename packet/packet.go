@@ -1,7 +1,6 @@
 package packet
 
 import (
-	"bytes"
 	"io"
 )
 
@@ -12,14 +11,17 @@ type Encoding interface {
 
 type Packet struct {
 	Header *Header
-	Data   io.ReadWriter
+	Data   []byte
 }
 
 func (p *Packet) Encoder(w io.Writer) (err error) {
 	if err = p.Header.Encoder(w); err != nil {
 		return
 	}
-	_, err = io.Copy(w, p.Data)
+	buf := bytesBufferPool.Alloc()
+	buf.Val().Write(p.Data)
+	_, err = io.Copy(w, buf.Val())
+	buf.Free()
 	return
 }
 
@@ -27,7 +29,10 @@ func (p *Packet) Decoder(r io.Reader) (err error) {
 	if err = p.Header.Decoder(r); err != nil {
 		return
 	}
-	_, err = io.Copy(p.Data, r)
+	buf := bytesBufferPool.Alloc()
+	_, err = io.Copy(buf.Val(), r)
+	p.Data = buf.Val().Bytes()
+	buf.Free()
 	return
 }
 
@@ -42,7 +47,7 @@ func NewPacket() *Packet {
 			Src:     []byte{0, 0, 0, 0},
 			Dst:     []byte{0, 0, 0, 0},
 		},
-		Data: &bytes.Buffer{},
+		Data: nil,
 	}
 }
 

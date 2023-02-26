@@ -9,18 +9,27 @@ import (
 type Protocol uint8
 
 const (
-	TCP Protocol = iota
+	ICMP Protocol = iota
+	ARP
+	DNS
+	TCP
 	UDP
 )
 
 var (
 	protocolName = map[Protocol]string{
-		TCP: "tcp",
-		UDP: "udp",
+		ICMP: "icmp",
+		ARP:  "arp",
+		DNS:  "dns",
+		TCP:  "tcp",
+		UDP:  "udp",
 	}
 	protocolValue = map[string]Protocol{
-		"tcp": TCP,
-		"udp": UDP,
+		"icmp": ICMP,
+		"arp":  ARP,
+		"dns":  DNS,
+		"tcp":  TCP,
+		"udp":  UDP,
 	}
 )
 
